@@ -1,7 +1,7 @@
 import type { TranslateState, Action } from '../types/types';
 import { AUTO_LANGUAGE } from '../constants.ts'
 
-function translateReducer(state: TranslateState, action: Action) {
+function translateReducer(state: TranslateState, action: Action): TranslateState {
     if (action.type === 'CHANGE_FROM_TEXT') {
         const newState = {...state}
         newState.fromText = action.payload;
@@ -10,7 +10,7 @@ function translateReducer(state: TranslateState, action: Action) {
     }
 
     if (action.type === 'INTERCHANGE_LANGUAGES') {
-        if (state.fromLanguage === AUTO_LANGUAGE) return;
+        if (state.fromLanguage === AUTO_LANGUAGE) return state;
         
         
         const newState = {...state}
@@ -42,5 +42,7 @@ function translateReducer(state: TranslateState, action: Action) {
 
         return newState;
     }
+
+    return {...state};
 }
 export { translateReducer }
