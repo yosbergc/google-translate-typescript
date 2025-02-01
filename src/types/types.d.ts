@@ -10,6 +10,14 @@ interface TranslateState {
     loading: boolean
 }
 
+export type TranslateContext = {
+    state: TranslateState,
+    interchangeLanguages: () => void,
+    changeFromLanguage: (newFromLanguage: FromLanguage) => void,
+    changeFromText: (newText: string) => void,
+    changeToLanguage: (newToLanguage: Language) => void
+} | null;
+
 type Action = 
     | { type: 'CHANGE_FROM_TEXT', payload: string }
     | { type: 'INTERCHANGE_LANGUAGES' }
