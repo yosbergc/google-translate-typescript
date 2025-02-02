@@ -17,4 +17,4 @@ function ProvideTranslateContext({ children } : { children: JSX.Element }) {
     </TranslateContext.Provider>
 }
 
-export { ProvideTranslateContext }
+export { ProvideTranslateContext, TranslateContext }
