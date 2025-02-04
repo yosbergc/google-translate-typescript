@@ -7,12 +7,15 @@ function App() {
       <section className="translator">
         <header>
           <Header isFromLanguage={true} languages={languages}/>
+          <Header isFromLanguage={false} languages={languages}/>
         </header>
-        <section className="fromText">
-
-        </section>
-        <section className="toText">
-
+        <section className="text-container">
+          <section className="fromText">
+            <textarea name="" id="" rows={5}></textarea>
+          </section>
+          <section className="toText">
+            <textarea name="" id="" rows={5} disabled placeholder='Traducción'></textarea>
+          </section>
         </section>
       </section>
     </main>
