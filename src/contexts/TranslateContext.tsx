@@ -6,6 +6,7 @@ const TranslateContext = createContext<TranslateContextType>(null)
 
 function ProvideTranslateContext({ children } : { children: JSX.Element }) {
     const { state, interchangeLanguages, changeToLanguage, changeFromLanguage, changeFromText } = useTranslate()
+    console.log(state)
     return <TranslateContext.Provider value={{
         state,
         interchangeLanguages,
