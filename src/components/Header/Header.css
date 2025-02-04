@@ -7,14 +7,14 @@
     border-radius: 4px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 .header-translate {
     display: flex;
     align-items: center;
 }
 .header-translate button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(72, 68, 68, 0.1);
     color: black;
 }
 .header-translate .down-arrow {
