@@ -9,7 +9,10 @@ interface TranslateState {
     toLanguage: Language,
     loading: boolean
 }
-
+export type LanguageConstant = {
+    name: string,
+    code: Language
+}
 export type TranslateContext = {
     state: TranslateState,
     interchangeLanguages: () => void,
