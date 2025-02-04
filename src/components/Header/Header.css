@@ -2,18 +2,20 @@
     background: none;
     border: none;
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.6);
     padding: 15px 10px;
     border-radius: 4px;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-size: 1.1rem;
 }
 .header-translate {
     display: flex;
-    gap: 10px;
     align-items: center;
 }
 .header-translate button:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    color: black;
 }
 .header-translate .down-arrow {
     background: none;
@@ -26,4 +28,13 @@
     width: 30px;
     cursor: pointer;
     border: none;
+}
+.header-translate .language-button.active {
+     color: rgb(26,115,232);
+     text-decoration: underline;
+     text-underline-offset: 10px;
+     text-decoration-thickness: 2px;
+}
+.header-translate .language-button.active:hover {
+    background-color: rgba(108, 99, 99, 0.1);
 }

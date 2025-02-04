@@ -5,16 +5,18 @@ function App() {
   return (
     <main>
       <section className="translator">
+        <h1>El Gran Traductor</h1>
         <header>
-          <Header isFromLanguage={true} languages={languages}/>
-          <Header isFromLanguage={false} languages={languages}/>
+          <Header isFromLanguage={true} languages={languages} currentSelected='auto'/>
+          <button className='swap-languages'></button>
+          <Header isFromLanguage={false} languages={languages} currentSelected='auto'/>
         </header>
         <section className="text-container">
           <section className="fromText">
-            <textarea name="" id="" rows={5}></textarea>
+            <textarea name="fromText" id="fromText" rows={5} autoFocus></textarea>
           </section>
           <section className="toText">
-            <textarea name="" id="" rows={5} disabled placeholder='Traducción'></textarea>
+            <textarea name="toText" id="toText" rows={5} disabled placeholder='Traducción'></textarea>
           </section>
         </section>
       </section>
