@@ -6,11 +6,12 @@ async function Translate(fromLanguage: FromLanguage, toLanguage: Language, text:
         text
     }
     try {
-        const request = await fetch(`${import.meta.env.X_RAPID_HOST}/api/v1/translator/text`, {
+        const request = await fetch(`https://${import.meta.env.VITE_X_RAPID_HOST}/api/v1/translator/text`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-rapidapi-key': `${import.meta.env.X_RAPID_KEY}`
+                'x-rapidapi-host': `${import.meta.env.VITE_X_RAPID_HOST}`,
+                'x-rapidapi-key': `${import.meta.env.VITE_X_RAPID_KEY}`
             },
             body: JSON.stringify(information)
         })
@@ -19,8 +20,8 @@ async function Translate(fromLanguage: FromLanguage, toLanguage: Language, text:
         }
         const response = await request.json()
         return response;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+        console.log(error)
         return new Error('We found an error')
     }
 }

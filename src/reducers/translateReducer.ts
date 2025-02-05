@@ -6,12 +6,17 @@ function translateReducer(state: TranslateState, action: Action): TranslateState
         const newState = {...state}
         newState.fromText = action.payload;
         newState.loading = true;
+        if (action.payload === '') {
+            newState.toText = '';
+            newState.loading = false;
+        }
+        
         return newState;
     }
 
     if (action.type === 'INTERCHANGE_LANGUAGES') {
         if (state.fromLanguage === AUTO_LANGUAGE) return state;
-        
+        if (state.fromLanguage === state.toLanguage) return state;
         
         const newState = {...state}
         const loading = state.fromText !== '';
@@ -19,6 +24,11 @@ function translateReducer(state: TranslateState, action: Action): TranslateState
         const fromLanguage = state.fromLanguage;
         newState.fromLanguage = state.toLanguage;
         newState.toLanguage = fromLanguage;
+
+        const toText = state.toText;
+        newState.toText = newState.fromText;
+        newState.fromText = toText;
+        
         newState.loading = loading;
         return newState;
     }
@@ -39,6 +49,15 @@ function translateReducer(state: TranslateState, action: Action): TranslateState
 
         newState.toLanguage = action.payload;
         newState.loading = loading
+
+        return newState;
+    }
+
+    if (action.type === 'CHANGE_TO_TEXT') {
+        const newState = {...state}
+        newState.loading = false;
+
+        newState.toText = action.payload
 
         return newState;
     }

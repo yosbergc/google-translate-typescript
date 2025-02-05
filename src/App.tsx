@@ -21,7 +21,7 @@ function App() {
             <textarea name="fromText" id="fromText" rows={6} autoFocus value={context?.state.fromText} onChange={(e) => { handleFromText(e)}}></textarea>
           </section>
           <section className="toText">
-            <textarea name="toText" id="toText" rows={6} disabled placeholder={context?.state.loading ? 'Estamos en proceso...' : 'Traducción'}></textarea>
+            <textarea name="toText" id="toText" rows={6} disabled placeholder={context?.state.loading ? 'Estamos en proceso...' : 'Traducción'} value={context?.state.toText}></textarea>
           </section>
         </section>
       </section>
