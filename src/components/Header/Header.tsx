@@ -22,8 +22,23 @@ function Header({ isFromLanguage, languages, currentSelected } : { isFromLanguag
                 width > 768 && isFromLanguage && <button className={currentSelected === 'auto' ? 'language-button active' : 'language-button'} onClick={() => {context?.changeFromLanguage('auto')}}>Detectar idioma</button>
             }
             {
-                width > 768 && languages.map((language, index) => {
-                    if (index > 2) return;
+                width > 768 && languages.filter((language) => language.code === currentSelected).map((language) => {
+                    return <button 
+                    key={language.code}
+                    className={currentSelected === language.code ? 'language-button active' : 'language-button'}
+                    onClick={() => {
+                        if (isFromLanguage) {
+                            context?.changeFromLanguage(language.code)
+                        } else {
+                            context?.changeToLanguage(language.code)
+                        }
+                    }}
+                    >{language.name}</button>
+                })
+            }
+            {
+                width > 768 && languages.filter((language) => language.code !== currentSelected).map((language, index) => {
+                    if (index > 1) return;
                     return <button 
                     key={language.code}
                     className={currentSelected === language.code ? 'language-button active' : 'language-button'}
@@ -43,8 +58,9 @@ function Header({ isFromLanguage, languages, currentSelected } : { isFromLanguag
                     {
                         showLanguages && <section className="hiddenLanguages">
                             {
-                                languages.map((language, index) => {
-                                    if (index < 3) return;
+                                languages.filter(language => language.code !== currentSelected).map((language, index) => {
+                                    if (index < 2) return;
+
                                     return <button 
                                     key={language.code}
                                     className={currentSelected === language.code ? 'language-button active' : 'language-button'}
