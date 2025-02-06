@@ -19,7 +19,7 @@ export type TranslateContext = {
     changeFromLanguage: (newFromLanguage: FromLanguage) => void,
     changeFromText: (newText: string) => void,
     changeToLanguage: (newToLanguage: Language) => void,
-    changeToText: (newText: string) => void
+    changeToText?: (newText: string) => void
 } | null;
 
 type Action = 
