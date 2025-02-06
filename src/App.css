@@ -3,16 +3,18 @@ main {
     place-items: center;
     place-content: center;
     height: 100vh;
+    padding: 20px;
 }
 .text-container {
     display: grid;
     gap: 30px;
-    grid-template-columns: 1fr 1fr;
 }
 header {
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr 40px 1fr;
+    align-items: center;
+    justify-items: center;
 }
 .text-container textarea {
     resize: none;
@@ -52,4 +54,12 @@ header {
 .translator {
     width: 100%;
     max-width: 1200px;
+}
+@media (min-width: 768px) {
+    .text-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    header {
+        justify-items: baseline;
+    }
 }
