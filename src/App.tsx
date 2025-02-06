@@ -25,7 +25,9 @@ function App() {
           </section>
         </section>
       </section>
+      <small>Desarrollado por <a href="https://github.com/yosbergc" target='_blank'>yosbergc</a> - Clon de Traductor de Google</small>
     </main>
+    
   )
 }
 

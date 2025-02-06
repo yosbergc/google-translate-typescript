@@ -4,3 +4,7 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+small {
+  position: absolute;
+  bottom: 20px;
+}
