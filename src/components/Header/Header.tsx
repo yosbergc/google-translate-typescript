@@ -1,9 +1,19 @@
 import { LanguageConstant } from "../../types/types";
 import './Header.css'
-import { TranslateContext } from "../../contexts/TranslateContext";
-import { useContext, useEffect, useState } from "react";
-function Header({ isFromLanguage, languages, currentSelected } : { isFromLanguage: boolean, languages: LanguageConstant[], currentSelected: string}) {
-    const context = useContext(TranslateContext)
+import { useEffect, useState } from "react";
+import { CurrentLanguage } from "../CurrentLanguage/CurrentLanguage";
+import { VisibleLanguages } from "../VisibleLanguages/VisibleLanguages";
+import { HiddenLanguages } from "../HiddenLanguages/HiddenLanguages";
+import { MobileLanguages } from "../MobileLanguages/MobileLanguages";
+import { AutoLanguage } from "../AutoLanguage/AutoLanguage";
+function Header({
+    isFromLanguage,
+    languages,
+    currentSelected } : {
+        isFromLanguage: boolean,
+        languages: LanguageConstant[],
+        currentSelected: string
+    }) {
     const [width, setWidth] = useState(window.innerWidth)
     const [showLanguages, setShowLanguages] = useState(false)
     function handleWidth() {
@@ -18,97 +28,39 @@ function Header({ isFromLanguage, languages, currentSelected } : { isFromLanguag
     })
     return (
         <section className="header-translate">
-            {
-                width > 768 && isFromLanguage && <button className={currentSelected === 'auto' ? 'language-button active' : 'language-button'} onClick={() => {context?.changeFromLanguage('auto')}}>Detectar idioma</button>
-            }
-            {
-                width > 768 && languages.filter((language) => language.code === currentSelected).map((language) => {
-                    return <button 
-                    key={language.code}
-                    className={currentSelected === language.code ? 'language-button active' : 'language-button'}
-                    onClick={() => {
-                        if (isFromLanguage) {
-                            context?.changeFromLanguage(language.code)
-                        } else {
-                            context?.changeToLanguage(language.code)
-                        }
-                    }}
-                    >{language.name}</button>
-                })
-            }
-            {
-                width > 768 && languages.filter((language) => language.code !== currentSelected).map((language, index) => {
-                    if (index > 1) return;
-                    return <button 
-                    key={language.code}
-                    className={currentSelected === language.code ? 'language-button active' : 'language-button'}
-                    onClick={() => {
-                        if (isFromLanguage) {
-                            context?.changeFromLanguage(language.code)
-                        } else {
-                            context?.changeToLanguage(language.code)
-                        }
-                    }}
-                    >{language.name}</button>
-                })
-            }
-            {
-                width > 768 && <section className="other-languages">
-                    <button className="down-arrow" onClick={() => setShowLanguages(!showLanguages)}></button>
-                    {
-                        showLanguages && <section className="hiddenLanguages">
-                            {
-                                languages.filter(language => language.code !== currentSelected).map((language, index) => {
-                                    if (index < 2) return;
-
-                                    return <button 
-                                    key={language.code}
-                                    className={currentSelected === language.code ? 'language-button active' : 'language-button'}
-                                    onClick={() => {
-                                        if (isFromLanguage) {
-                                            context?.changeFromLanguage(language.code)
-                                        } else {
-                                            context?.changeToLanguage(language.code)
-                                        }
-                                    }}
-                                    >{language.name}</button>
-                                })
-                            }
-                        </section>
-                    }
-                </section>
-            }
-            {
-                width < 768 && languages.filter(language => language.code === currentSelected).map((language) => {
-                    return <section className="other-languages">
-                        <button 
-                        key={language.code}
-                        className={currentSelected === language.code ? 'language-button active' : 'language-button'}
-                        onClick={() => setShowLanguages(!showLanguages)}
-                        >{language.name}</button>
-                        {
-                        showLanguages && <section className="hiddenLanguages">
-                            {
-                                languages.map((language) => {
-                                    return <button 
-                                    key={language.code}
-                                    className={currentSelected === language.code ? 'language-button active' : 'language-button'}
-                                    onClick={() => {
-                                        setShowLanguages(false)
-                                        if (isFromLanguage) {
-                                            context?.changeFromLanguage(language.code)
-                                        } else {
-                                            context?.changeToLanguage(language.code)
-                                        }
-                                    }}
-                                    >{language.name}</button>
-                                })
-                            }
-                        </section>
-                    }
-                    </section>
-                })
-            }
+            <AutoLanguage
+            currentSelected={currentSelected}
+            isFromLanguage={isFromLanguage}
+            width={width}
+            />
+            <CurrentLanguage
+            languages={languages}
+            isFromLanguage={isFromLanguage}
+            currentSelected={currentSelected}
+            width={width}
+            />
+            <VisibleLanguages
+            languages={languages}
+            currentSelected={currentSelected}
+            isFromLanguage={isFromLanguage}
+            width={width}
+            />
+            <HiddenLanguages
+            currentSelected={currentSelected}
+            isFromLanguage={isFromLanguage}
+            languages={languages}
+            setShowLanguages={setShowLanguages}
+            showLanguages={showLanguages}
+            width={width}
+            />
+            <MobileLanguages
+            currentSelected={currentSelected}
+            isFromLanguage={isFromLanguage}
+            languages={languages}
+            setShowLanguages={setShowLanguages}
+            showLanguages={showLanguages}
+            width={width}
+            />
         </section>
     )
 }
